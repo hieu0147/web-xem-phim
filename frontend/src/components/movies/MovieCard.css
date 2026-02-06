@@ -15,8 +15,8 @@
 }
 
 .movie-card.landscape img {
-    width: 100%;
-    height: 100%;
+    max-width: 250.39px;
+    max-height: 140.22px;
     object-fit: cover;
     transition: transform 0.3s;
 }
@@ -35,15 +35,16 @@
     font-weight: 700;
     color: #fff;
     background: rgba(0, 0, 0, 0.6);
+    font-size: 11px;
 }
 
 .card-badge.tm {
-    background-color: #10b981;
+    background-color: rgb(94, 96, 112);
 }
 
 /* Greenish */
 .card-badge.pd {
-    background-color: #6366f1;
+    background-color: rgb(44, 163, 93);
 }
 
 /* Bluish */

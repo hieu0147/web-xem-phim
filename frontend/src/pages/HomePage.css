@@ -10,14 +10,23 @@
     z-index: 20;
 }
 
-/* Sections */
-.movie-section {
-    margin-bottom: 50px;
+.container {
+    border-radius: 16px;
+    background: linear-gradient(0deg, rgba(40, 43, 58, 0) 20%, rgba(40, 43, 58, 1));
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
+
+/* Sections */
+/* .movie-section {
+    margin-bottom: 50px;
+} */
 
 .movie-section.horizontal {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     align-items: flex-start;
 }
 
@@ -85,10 +94,9 @@
     /* Use grid for row per screenshot look, or flex for scroll */
     /* Screenshot shows 5 items per row nicely fitting next to title */
     display: flex;
-    gap: 15px;
+    gap: 10px;
     overflow-x: auto;
     position: relative;
-    padding-bottom: 20px;
     scrollbar-width: none;
     /* Hide scrollbar */
 }
@@ -113,9 +121,9 @@
     transition: transform 0.2s;
 }
 
-.slider-next:hover {
+/* .slider-next:hover {
     transform: translateY(-50%) scale(1.1);
-}
+} */
 
 /* Responsive */
 @media (max-width: 1024px) {

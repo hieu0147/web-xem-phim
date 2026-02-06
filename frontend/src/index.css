@@ -65,9 +65,9 @@ img {
 
 /* Utility */
 .container {
-    max-width: 1400px;
+    /* max-width: 1400px; */
     margin: 0 auto;
-    padding: 0 4%;
+    padding: 0 2%;
 }
 
 .text-gradient {

@@ -1,12 +1,12 @@
 .category-section {
     padding: 20px 0 40px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .cat-header-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #eee;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
@@ -14,19 +14,19 @@
     display: flex;
     gap: 15px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     /* Hide scrollbar for cleaner look */
     scrollbar-width: thin;
 }
 
 .cat-card {
     min-width: 180px;
-    height: 100px;
+    height: 148px;
     border-radius: 16px;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     transition: transform 0.3s;
     cursor: pointer;
     flex-shrink: 0;
@@ -51,16 +51,18 @@
 }
 
 .cat-title {
-    font-size: 18px;
+    font-size: 22.4px;
     font-weight: 800;
     color: #fff;
     line-height: 1.2;
+    max-width: 190px;
 }
 
 .cat-link {
-    font-size: 11px;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     font-weight: 600;
+    margin-top: 15px;
 }

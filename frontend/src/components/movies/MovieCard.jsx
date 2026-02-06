@@ -13,24 +13,32 @@ const MovieCard = ({ movie }) => {
     // Let's assume thumb_url is the landscape one suitable for the horizontal slider. 
     // However, inspecting the API sample: "thumb_url": ".../chuyen-nha-cha.jpg", "poster_url": ".../chuyen-nha-cha-1.jpg"
     // Let's prioritize thumb_url for landscape cards.
-    const displayImage = movie.thumb_url;
+    // const displayImage = movie.thumb_url;
 
     return (
         <div className="movie-card landscape">
             <Link to={`/watch/${movie.slug}`}>
                 <div className="card-image">
-                    <img src={displayImage} alt={movie.name} loading="lazy" onError={(e) => e.target.src = 'https://via.placeholder.com/300x169?text=No+Image'} />
+                    <img src={imageUrl} alt={movie.name} loading="lazy" onError={(e) => e.target.src = 'https://via.placeholder.com/300x169?text=No+Image'} />
                     <div className="card-overlay">
                         <button className="play-btn-mini">
                             <Play size={16} fill="currentColor" />
                         </button>
                         {/* Badge Logic */}
-                        <span className={`card-badge ${movie.language.includes('Vietsub') ? 'tm' : 'pd'}`}>
-                            {movie.language}
+                        <span className={`card-badge ${movie.language.includes('Thuyết Minh') || !movie.language.includes('Vietsub')
+                            ? 'pd'
+                            : 'tm'
+                            }`}>
+                            {movie.language.includes('Vietsub') && movie.language.includes('Thuyết Minh')
+                                ? 'PĐ + TM'
+                                : movie.language.includes('Vietsub')
+                                    ? 'PĐ'
+                                    : 'TM'
+                            } . {movie.current_episode?.replace(/Tập\s*/i, '')}
                         </span>
-                        <span className="card-episode-badge">
+                        {/* <span className="card-episode-badge">
                             {movie.current_episode}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
                 <div className="card-info">

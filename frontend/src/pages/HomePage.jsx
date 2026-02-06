@@ -31,60 +31,61 @@ const HomePage = () => {
 
             <div className="fluid-gap">
                 <CategoryRow />
-
-                {/* Section: Phim Hàn Quốc */}
-                {koreanMovies.length > 0 && (
-                    <section className="movie-section horizontal">
-                        <div className="section-header-side">
-                            <div className="header-titles">
-                                <h2 className="text-highlight">Phim Hàn Quốc mới</h2>
-                                <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                <div className="container">
+                    {/* Section: Phim Hàn Quốc */}
+                    {koreanMovies.length > 0 && (
+                        <section className="movie-section horizontal">
+                            <div className="section-header-side">
+                                <div className="header-titles">
+                                    <h2 className="text-highlight">Phim Hàn Quốc mới</h2>
+                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                </div>
                             </div>
-                        </div>
-                        <div className="cards-slider">
-                            {koreanMovies.map(movie => (
-                                <MovieCard key={`kr-${movie.slug}`} movie={movie} />
-                            ))}
-                            <button className="slider-next"><ChevronRight size={24} /></button>
-                        </div>
-                    </section>
-                )}
-
-                {/* Section: Phim Trung Quốc */}
-                {chineseMovies.length > 0 && (
-                    <section className="movie-section horizontal">
-                        <div className="section-header-side">
-                            <div className="header-titles">
-                                <h2 className="text-highlight-yellow">Phim Trung Quốc mới</h2>
-                                <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                            <div className="cards-slider">
+                                {koreanMovies.map(movie => (
+                                    <MovieCard key={`kr-${movie.slug}`} movie={movie} />
+                                ))}
+                                <button className="slider-next"><ChevronRight size={24} /></button>
                             </div>
-                        </div>
-                        <div className="cards-slider">
-                            {chineseMovies.map(movie => (
-                                <MovieCard key={`cn-${movie.slug}`} movie={movie} />
-                            ))}
-                            <button className="slider-next"><ChevronRight size={24} /></button>
-                        </div>
-                    </section>
-                )}
+                        </section>
+                    )}
 
-                {/* Section: Phim Âu Mỹ */}
-                {westernMovies.length > 0 && (
-                    <section className="movie-section horizontal">
-                        <div className="section-header-side">
-                            <div className="header-titles">
-                                <h2 className="text-highlight-pink">Phim Âu Mỹ Mới</h2>
-                                <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                    {/* Section: Phim Trung Quốc */}
+                    {chineseMovies.length > 0 && (
+                        <section className="movie-section horizontal">
+                            <div className="section-header-side">
+                                <div className="header-titles">
+                                    <h2 className="text-highlight-yellow">Phim Trung Quốc mới</h2>
+                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                </div>
                             </div>
-                        </div>
-                        <div className="cards-slider">
-                            {westernMovies.map(movie => (
-                                <MovieCard key={`us-${movie.slug}`} movie={movie} />
-                            ))}
-                            <button className="slider-next"><ChevronRight size={24} /></button>
-                        </div>
-                    </section>
-                )}
+                            <div className="cards-slider">
+                                {chineseMovies.map(movie => (
+                                    <MovieCard key={`cn-${movie.slug}`} movie={movie} />
+                                ))}
+                                <button className="slider-next"><ChevronRight size={24} /></button>
+                            </div>
+                        </section>
+                    )}
+
+                    {/* Section: Phim Âu Mỹ */}
+                    {westernMovies.length > 0 && (
+                        <section className="movie-section horizontal">
+                            <div className="section-header-side">
+                                <div className="header-titles">
+                                    <h2 className="text-highlight-pink">Phim Âu Mỹ Mới</h2>
+                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                </div>
+                            </div>
+                            <div className="cards-slider">
+                                {westernMovies.map(movie => (
+                                    <MovieCard key={`us-${movie.slug}`} movie={movie} />
+                                ))}
+                                <button className="slider-next"><ChevronRight size={24} /></button>
+                            </div>
+                        </section>
+                    )}
+                </div>
             </div>
         </div>
     );

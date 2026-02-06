@@ -1,7 +1,7 @@
 footer {
-    background-color: var(--bg-darker);
-    padding: 60px 0 40px;
-    border-top: 1px solid #222;
+    /* background-color: var(--bg-darker); */
+    /* padding: 60px 0 40px; */
+    /* border-top: 1px solid #222; */
     position: relative;
     overflow: hidden;
 }
