@@ -36,9 +36,6 @@ const MovieCard = ({ movie }) => {
                                     : 'TM'
                             } . {movie.current_episode?.replace(/Tập\s*/i, '')}
                         </span>
-                        {/* <span className="card-episode-badge">
-                            {movie.current_episode}
-                        </span> */}
                     </div>
                 </div>
                 <div className="card-info">

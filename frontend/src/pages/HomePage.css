@@ -5,7 +5,7 @@
 .fluid-gap {
     /* max-width: 1600px; */
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 2%;
     position: relative;
     z-index: 20;
 }
@@ -13,7 +13,7 @@
 .container {
     border-radius: 16px;
     background: linear-gradient(0deg, rgba(40, 43, 58, 0) 20%, rgba(40, 43, 58, 1));
-    padding: 32px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -86,44 +86,12 @@
     color: #fff;
 }
 
-/* Cards Slider Container */
-.cards-slider {
+/* Flex item for the slider */
+.slider-container-flex {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    /* Use grid for row per screenshot look, or flex for scroll */
-    /* Screenshot shows 5 items per row nicely fitting next to title */
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    position: relative;
-    scrollbar-width: none;
-    /* Hide scrollbar */
+    min-width: 0;
+    /* Important for flex child with scroll */
 }
-
-.slider-next {
-    position: absolute;
-    right: 0;
-    top: 35%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #fff;
-    color: #000;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    transition: transform 0.2s;
-}
-
-/* .slider-next:hover {
-    transform: translateY(-50%) scale(1.1);
-} */
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -143,10 +111,6 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
-    }
-
-    .cards-slider {
         width: 100%;
     }
 }

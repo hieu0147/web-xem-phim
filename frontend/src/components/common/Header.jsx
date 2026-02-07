@@ -44,16 +44,25 @@ const Header = () => {
                     </form>
                 </div>
 
+                <div id="main_menu" className={isMobileMenuOpen ? 'open' : ''}>
+                    <nav>
+                        <a href="/">Phim Mới</a>
+                        <a href="#">Phim Bộ</a>
+                        <a href="#">Phim Lẻ</a>
+                        <a href="#">Quốc Gia</a>
+                    </nav>
+                </div>
+
                 {/* Right Side Actions */}
                 <div className="el-group">
-                    <div id="main_menu" className={isMobileMenuOpen ? 'open' : ''}>
+                    {/* <div id="main_menu" className={isMobileMenuOpen ? 'open' : ''}>
                         <nav>
                             <a href="/">Phim Mới</a>
                             <a href="#">Phim Bộ</a>
                             <a href="#">Phim Lẻ</a>
                             <a href="#">Quốc Gia</a>
                         </nav>
-                    </div>
+                    </div> */}
 
                     <div id="main_user">
                         <button aria-label="Đăng nhập" className="button-user button-login">

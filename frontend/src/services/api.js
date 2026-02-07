@@ -16,7 +16,7 @@ export const fetchMoviesByCountry = async (countrySlug, page = 1) => {
 
 export const fetchKoreanMovies = (page) => fetchMoviesByCountry('han-quoc', page);
 export const fetchChineseMovies = (page) => fetchMoviesByCountry('trung-quoc', page);
-export const fetchWesternMovies = (page) => fetchMoviesByCountry('au-my', page);
+export const fetchVietnameseMovies = (page) => fetchMoviesByCountry('viet-nam', page);
 
 export const fetchPhimDangChieu = async (page = 1) => {
     try {

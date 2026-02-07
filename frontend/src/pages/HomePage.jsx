@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import HeroSection from '../components/movies/HeroSection';
-import MovieCard from '../components/movies/MovieCard';
 import CategoryRow from '../components/movies/CategoryRow';
+import MovieSlider from '../components/common/MovieSlider';
 import { ChevronRight } from 'lucide-react';
-import { fetchKoreanMovies, fetchChineseMovies, fetchWesternMovies } from '../services/api';
+import { fetchKoreanMovies, fetchChineseMovies, fetchVietnameseMovies } from '../services/api';
 import './HomePage.css';
 
 const HomePage = () => {
     const [koreanMovies, setKoreanMovies] = useState([]);
     const [chineseMovies, setChineseMovies] = useState([]);
-    const [westernMovies, setWesternMovies] = useState([]);
+    const [vietnameseMovies, setVietnameseMovies] = useState([]);
 
     useEffect(() => {
         const loadData = async () => {
             const [kr, cn, us] = await Promise.all([
-                fetchKoreanMovies(),
-                fetchChineseMovies(),
-                fetchWesternMovies()
+                fetchKoreanMovies(1),
+                fetchChineseMovies(1),
+                fetchVietnameseMovies(1)
             ]);
             setKoreanMovies(kr);
             setChineseMovies(cn);
-            setWesternMovies(us);
+            setVietnameseMovies(us);
         };
         loadData();
     }, []);
@@ -41,11 +41,8 @@ const HomePage = () => {
                                     <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
                                 </div>
                             </div>
-                            <div className="cards-slider">
-                                {koreanMovies.map(movie => (
-                                    <MovieCard key={`kr-${movie.slug}`} movie={movie} />
-                                ))}
-                                <button className="slider-next"><ChevronRight size={24} /></button>
+                            <div className="slider-container-flex">
+                                <MovieSlider movies={koreanMovies} />
                             </div>
                         </section>
                     )}
@@ -59,29 +56,23 @@ const HomePage = () => {
                                     <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
                                 </div>
                             </div>
-                            <div className="cards-slider">
-                                {chineseMovies.map(movie => (
-                                    <MovieCard key={`cn-${movie.slug}`} movie={movie} />
-                                ))}
-                                <button className="slider-next"><ChevronRight size={24} /></button>
+                            <div className="slider-container-flex">
+                                <MovieSlider movies={chineseMovies} />
                             </div>
                         </section>
                     )}
 
-                    {/* Section: Phim Âu Mỹ */}
-                    {westernMovies.length > 0 && (
+                    {/* Section: Phim Việt Nam */}
+                    {vietnameseMovies.length > 0 && (
                         <section className="movie-section horizontal">
                             <div className="section-header-side">
                                 <div className="header-titles">
-                                    <h2 className="text-highlight-pink">Phim Âu Mỹ Mới</h2>
+                                    <h2 className="text-highlight-pink">Phim Việt Nam Mới</h2>
                                     <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
                                 </div>
                             </div>
-                            <div className="cards-slider">
-                                {westernMovies.map(movie => (
-                                    <MovieCard key={`us-${movie.slug}`} movie={movie} />
-                                ))}
-                                <button className="slider-next"><ChevronRight size={24} /></button>
+                            <div className="slider-container-flex">
+                                <MovieSlider movies={vietnameseMovies} />
                             </div>
                         </section>
                     )}
