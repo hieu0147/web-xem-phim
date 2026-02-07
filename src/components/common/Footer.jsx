@@ -29,7 +29,7 @@ const Footer = () => {
                         </div>
 
                         <div className="sl-menu mb-3">
-                            <p>Hỏi-Đáp</p>
+                            <p>Hỏi Đáp</p>
                             <p>Chính sách bảo mật</p>
                             <p>Điều khoản sử dụng</p>
                             <p>Giới thiệu</p>
@@ -37,12 +37,12 @@ const Footer = () => {
                         </div>
 
                         <div className="sl-notice mb-2">
-                            GoGoPhim - Trang xem phim online chất lượng cao miễn phí Vietsub, thuyết minh, lồng tiếng full HD.
+                            ThùngPhim - Trang xem phim online chất lượng cao miễn phí Vietsub, thuyết minh, lồng tiếng full HD.
                             Kho phim mới khổng lồ, phim chiếu rạp, phim bộ, phim lẻ từ nhiều quốc gia như Việt Nam, Hàn Quốc, Trung Quốc, Thái Lan, Nhật Bản, Âu Mỹ… đa dạng thể loại.
                         </div>
 
                         <div className="sl-copyright">
-                            © 2025 GoGoPhim
+                            © 2025 ThùngPhim
                         </div>
                     </div>
                 </div>
