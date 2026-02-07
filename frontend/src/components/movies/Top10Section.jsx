@@ -18,7 +18,7 @@ const getBadgeClass = (movie) => {
     return 'tm';
 };
 
-const Top10Section = ({ movies }) => {
+const Top10Section = ({ movies, title }) => {
     const top10 = (movies || []).slice(0, 10);
     const sliderRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -83,7 +83,7 @@ const Top10Section = ({ movies }) => {
 
     return (
         <section className="top-10-section">
-            <h2 className="top-10-title">Top 10 phim bộ hôm nay</h2>
+            <h2 className="top-10-title">{title}</h2>
 
             <div className="top-10-wrapper">
                 {showLeftBtn && (

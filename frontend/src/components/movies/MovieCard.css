@@ -102,3 +102,109 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+    .movie-card.landscape {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .movie-card.landscape img {
+        max-width: 100%;
+        max-height: none;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-subtitle {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 900px) {
+    .movie-card.landscape {
+        max-width: 200px;
+    }
+
+    .movie-card.landscape .card-image {
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .card-badge {
+        padding: 2px 5px;
+        font-size: 10px;
+        bottom: 8px;
+        left: 8px;
+    }
+
+    .play-btn-mini {
+        width: 36px;
+        height: 36px;
+    }
+
+    .card-title {
+        font-size: 13px;
+    }
+
+    .card-subtitle {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-card.landscape {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .movie-card.landscape .card-image {
+        border-radius: 8px;
+        margin-bottom: 6px;
+    }
+
+    .movie-card.landscape img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .card-badge {
+        padding: 2px 4px;
+        font-size: 9px;
+        bottom: 6px;
+        left: 6px;
+        border-radius: 3px;
+    }
+
+    .play-btn-mini {
+        width: 32px;
+        height: 32px;
+    }
+
+    .card-title {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .card-subtitle {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .movie-card.landscape .card-image {
+        border-radius: 6px;
+    }
+
+    .card-title {
+        font-size: 11px;
+    }
+
+    .card-subtitle {
+        font-size: 10px;
+    }
+}

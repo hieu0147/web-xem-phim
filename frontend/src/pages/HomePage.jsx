@@ -4,25 +4,33 @@ import CategoryRow from '../components/movies/CategoryRow';
 import Top10Section from '../components/movies/Top10Section';
 import MovieSlider from '../components/common/MovieSlider';
 import { ChevronRight } from 'lucide-react';
-import { fetchKoreanMovies, fetchChineseMovies, fetchVietnameseMovies } from '../services/api';
+import { fetchKoreanMovies, fetchChineseMovies, fetchVietnameseMovies, fetchPhimBo, fetchPhimLe, fetchTvShows } from '../services/api';
 import './HomePage.css';
-import MovieCard from '../components/movies/MovieCard';
 
 const HomePage = () => {
     const [koreanMovies, setKoreanMovies] = useState([]);
     const [chineseMovies, setChineseMovies] = useState([]);
     const [vietnameseMovies, setVietnameseMovies] = useState([]);
+    const [phimBo, setPhimBo] = useState([]);
+    const [phimLe, setPhimLe] = useState([]);
+    const [tvShows, setTvShows] = useState([]);
 
     useEffect(() => {
         const loadData = async () => {
-            const [kr, cn, us] = await Promise.all([
+            const [kr, cn, us, pb, pl, ts] = await Promise.all([
                 fetchKoreanMovies(1),
                 fetchChineseMovies(1),
-                fetchVietnameseMovies(1)
+                fetchVietnameseMovies(1),
+                fetchPhimBo(1),
+                fetchPhimLe(1),
+                fetchTvShows(1),
             ]);
             setKoreanMovies(kr);
             setChineseMovies(cn);
             setVietnameseMovies(us);
+            setPhimBo(pb);
+            setPhimLe(pl);
+            setTvShows(ts);
         };
         loadData();
     }, []);
@@ -79,8 +87,9 @@ const HomePage = () => {
                         </section>
                     )}
                 </div>
-                <Top10Section movies={vietnameseMovies} />
-                {/* <MovieSlider movies={vietnameseMovies} /> */}
+                <Top10Section movies={phimBo} title="Top 10 phim bộ hôm nay" />
+                <Top10Section movies={phimLe} title="Top 10 phim lẻ hôm nay" />
+                <Top10Section movies={tvShows} title="Top 10 TV shows hôm nay" />
             </div>
         </div>
     );
