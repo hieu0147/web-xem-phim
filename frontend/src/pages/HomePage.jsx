@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import HeroSection from '../components/movies/HeroSection';
 import CategoryRow from '../components/movies/CategoryRow';
+import Top10Section from '../components/movies/Top10Section';
 import MovieSlider from '../components/common/MovieSlider';
 import { ChevronRight } from 'lucide-react';
 import { fetchKoreanMovies, fetchChineseMovies, fetchVietnameseMovies } from '../services/api';
 import './HomePage.css';
+import MovieCard from '../components/movies/MovieCard';
 
 const HomePage = () => {
     const [koreanMovies, setKoreanMovies] = useState([]);
@@ -77,6 +79,8 @@ const HomePage = () => {
                         </section>
                     )}
                 </div>
+                <Top10Section movies={vietnameseMovies} />
+                {/* <MovieSlider movies={vietnameseMovies} /> */}
             </div>
         </div>
     );
