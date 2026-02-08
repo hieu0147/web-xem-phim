@@ -86,13 +86,12 @@
     color: #fff;
 }
 
-/* Flex item for the slider */
+/* Flex item for the slider - overflow visible so slider buttons aren't clipped */
 .slider-container-flex {
     flex: 1;
     min-width: 0;
     width: 100%;
-    overflow: hidden;
-    /* Important for flex child with horizontal scroll */
+    overflow: visible;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -130,7 +129,7 @@
     .slider-container-flex {
         width: 100%;
         min-width: 0;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .section-title-lg {
@@ -160,7 +159,7 @@
     .slider-container-flex {
         width: 100%;
         min-width: 0;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .section-title-lg {
@@ -195,7 +194,7 @@
     .slider-container-flex {
         width: 100%;
         min-width: 0;
-        overflow: hidden;
+        overflow: visible;
         margin: 0 -4px;
         padding: 0 4px;
     }
@@ -232,7 +231,7 @@
     .slider-container-flex {
         width: 100%;
         min-width: 0;
-        overflow: hidden;
+        overflow: visible;
         margin: 0 -2px;
         padding: 0 2px;
     }
