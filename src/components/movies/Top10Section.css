@@ -230,6 +230,9 @@
     .top-10-section {
         padding: 24px 0 0px;
     }
+    .top-10-title {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 600px) {
