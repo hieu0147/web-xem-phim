@@ -219,6 +219,10 @@
         max-width: calc((100% - 30px) / 3);
     }
 
+    .top-10-wrapper .slider-btn {
+        display: none;
+    }
+
     .rank-number {
         font-size: 36px;
         letter-spacing: -6px;
