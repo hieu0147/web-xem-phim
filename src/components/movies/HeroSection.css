@@ -1,6 +1,6 @@
 .hero-container {
     position: relative;
-    height: 90vh;
+    height: 91vh;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -207,7 +207,7 @@
 
 @media (max-width: 1200px) {
     .hero-container {
-        height: 85vh;
+        height: 55vh;
     }
 
     .hero-content {
@@ -237,20 +237,33 @@
 
 @media (max-width: 900px) {
     .hero-container {
-        height: 80vh;
+        height: 41vh;
     }
 
     .hero-content {
+        display: block;
         bottom: 50px;
         padding: 0 4%;
     }
 
+    .thumb-item {
+        width: 26px;
+        height: 26px;
+        border-radius: 100%;
+    }
+
     .hero-right {
-        display: none;
+        justify-content: center;
     }
 
     .hero-left {
         max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-title {
@@ -273,15 +286,14 @@
         padding: 2px 6px;
     }
 
+    /* Force hiding hero-description on screen <= 900px */
     .hero-description {
-        font-size: 13px;
-        margin-bottom: 20px;
-        max-width: 100%;
-        -webkit-line-clamp: 3;
+        display: none !important;
     }
 
     .hero-actions {
-        gap: 16px;
+        /* gap: 16px; */
+        display: none;
     }
 
     .btn-play-circle {
@@ -297,8 +309,8 @@
 
 @media (max-width: 600px) {
     .hero-container {
-        height: 75vh;
-        min-height: 400px;
+        height: 0vh;
+        min-height: 322px;
     }
 
     .hero-content {
@@ -328,12 +340,13 @@
         border-radius: 3px;
     }
 
-    .hero-description {
+    /* .hero-description display:none đã được set ở 900px, nên không cần set lại ở đây để tránh style sau ghi đè mất !important */
+    /* .hero-description {
         font-size: 12px;
         line-height: 1.5;
         margin-bottom: 16px;
         -webkit-line-clamp: 2;
-    }
+    } */
 
     .hero-actions {
         gap: 12px;
@@ -356,8 +369,8 @@
 
 @media (max-width: 400px) {
     .hero-container {
-        height: 70vh;
-        min-height: 360px;
+        height: 0vh;
+        min-height: 220px;
     }
 
     .hero-content {
@@ -366,7 +379,11 @@
     }
 
     .hero-title {
-        font-size: 22px;
+        font-size: 19px;
+    }
+
+    .meta-tag {
+        font-size: 9px;
     }
 
     .hero-subtitle {

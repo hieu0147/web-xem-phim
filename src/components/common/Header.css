@@ -138,8 +138,22 @@
 }
 
 @media (max-width: 900px) {
+    .fly {
+        background: rgba(10, 10, 10, 0.95);
+    }
+
+    main {
+        padding-top: 60px !important;
+    }
+
     .for-mobile {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .for-mobile.menu-toggle.menu-open {
+        color: #ff6c5d;
     }
 
     #main_menu {
@@ -161,10 +175,5 @@
 
     #main_menu nav {
         flex-direction: column;
-    }
-
-    #search {
-        display: none;
-        /* Simplify for mobile unless search toggle implemented */
     }
 }

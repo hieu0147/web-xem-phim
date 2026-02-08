@@ -227,6 +227,9 @@
         font-size: 36px;
         letter-spacing: -6px;
     }
+    .top-10-section {
+        padding: 24px 0 0px;
+    }
 }
 
 @media (max-width: 600px) {

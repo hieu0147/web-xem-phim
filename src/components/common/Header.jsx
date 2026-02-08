@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, User } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import './Header.css';
 
 const Header = () => {
@@ -22,8 +22,8 @@ const Header = () => {
         <header className={`fly ${isScrolled ? 'scrolled' : ''}`}>
             <div className="header-elements container-fluid">
                 {/* Mobile Toggles */}
-                <div className="for-mobile menu-toggle" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    <Menu size={24} />
+                <div className={`for-mobile menu-toggle ${isMobileMenuOpen ? 'menu-open' : ''}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </div>
 
                 {/* Logo */}
@@ -51,27 +51,6 @@ const Header = () => {
                         <a href="#">Phim Lẻ</a>
                         <a href="#">Quốc Gia</a>
                     </nav>
-                </div>
-
-                {/* Right Side Actions */}
-                <div className="el-group">
-                    {/* <div id="main_menu" className={isMobileMenuOpen ? 'open' : ''}>
-                        <nav>
-                            <a href="/">Phim Mới</a>
-                            <a href="#">Phim Bộ</a>
-                            <a href="#">Phim Lẻ</a>
-                            <a href="#">Quốc Gia</a>
-                        </nav>
-                    </div> */}
-
-                    <div id="main_user">
-                        <button aria-label="Đăng nhập" className="button-user button-login">
-                            <div className="line-center">
-                                <User size={16} className="ms-1" />
-                                <span>Thành viên</span>
-                            </div>
-                        </button>
-                    </div>
                 </div>
             </div>
         </header>
