@@ -17,7 +17,7 @@ const MovieCard = ({ movie }) => {
 
     return (
         <div className="movie-card landscape">
-            <Link to={`/watch/${movie.slug}`}>
+            <Link to={`/phim/${movie.slug}`}>
                 <div className="card-image">
                     <img src={imageUrl} alt={movie.name} loading="lazy" onError={(e) => e.target.src = 'https://via.placeholder.com/300x169?text=No+Image'} />
                     <div className="card-overlay">

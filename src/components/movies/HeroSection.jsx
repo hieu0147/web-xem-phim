@@ -68,7 +68,7 @@ const HeroSection = () => {
                     ></div>
 
                     <div className="hero-actions">
-                        <Link to={`/watch/${currentMovie.slug}`}>
+                        <Link to={`/phim/${currentMovie.slug}`}>
                             <button className="btn-play-circle">
                                 <Play size={32} fill="currentColor" className="icon-play" />
                             </button>

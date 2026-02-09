@@ -1,209 +1,1301 @@
-.watch-page {
-    display: flex;
-    gap: 30px;
-    padding-top: 30px;
-    padding-bottom: 50px;
+/* Watch Page Container */
+.watch-page-container {
+    background-color: #0b0c15;
+    /* Dark blue/black background */
+    min-height: 100vh;
+    color: #e5e5e5;
+    font-family: 'Inter', sans-serif;
+    padding-top: 50px;
+    /* Space for fixed header/navbar if any */
 }
 
-.watch-content {
-    flex: 3;
-}
-
-.sidebar {
-    flex: 1;
-}
-
-/* Player */
-.player-container {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.video-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #555;
-    background: radial-gradient(circle, #222 0%, #000 100%);
-}
-
-.video-placeholder svg {
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Server List */
-.server-list {
+/* Header */
+.watch-header {
+    margin-top: 30px;
+    /* Minimized padding since it's inside body */
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-    background: var(--bg-card);
-    padding: 15px;
-    border-radius: 8px;
 }
 
-.server-btn {
-    padding: 8px 16px;
-    background: #333;
-    color: #ccc;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.server-btn:hover {
-    background: #444;
-    color: #fff;
-}
-
-.server-btn.active {
-    background: var(--primary-color);
-    color: #fff;
-}
-
-/* Info */
-.movie-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.movie-meta {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.rating {
-    color: #ffd700;
-}
-
-.quality-badge {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.action-btn {
+.back-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: #fff;
+}
+
+/* Player */
+.player-wrapper-large {
+    width: 100%;
+    /* max-width: 1500px; Remove max-width here, let container control it or keep it if desired */
+    /* Limit width */
+    margin: 0 auto 30px;
+    /* Center and add bottom margin */
+    aspect-ratio: 16/9;
+    /* Enforce video aspect ratio */
+    background: #000;
+    /* distinct background */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.video-player-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional, maybe flat? */
+/* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+} */
+
+.big-play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.big-play-btn:hover {
+    transform: scale(1.1);
+}
+
+.play-icon-bg {
+    width: 80px;
+    height: 80px;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #dedede;
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+/* Body Grid */
+/* .watch-body {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px 50px;
+} */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+}
+
+/* Main Column Components */
+/* Movie Info */
+.movie-info-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.movie-poster-wrapper {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.movie-poster-vertical {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.movie-info-content {
+    flex: 1;
+}
+
+.movie-title-large {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 5px;
+    color: #fff;
+}
+
+.movie-title-original {
+    font-size: 16px;
+    color: #f5c518;
+    /* Yellow/Orange */
+    margin: 0 0 15px;
+    font-weight: 500;
+}
+
+.movie-meta-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.meta-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.meta-badge.imdb {
+    background: #f5c518;
+    color: #000;
+    font-weight: 700;
+    border: none;
+}
+
+.movie-genre-list {
+    margin-bottom: 15px;
+}
+
+.genre-tag {
+    background: #2a2c38;
+    color: #ccc;
+    border: none;
+    padding: 5px 12px;
     border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.movie-status {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.highlight-text {
+    color: #f5c518;
+    font-weight: 500;
+}
+
+.movie-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #aaa;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.more-info-link {
+    color: #f5c518;
+    font-size: 13px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Episode List */
+.episode-block {
+    border-top: 1px solid #2a2c38;
+    margin-bottom: 40px;
+    /* background: #0f101a; */
+    padding: 0;
+    border-radius: 12px;
+}
+
+.section-header-simple h3 {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.section-header-simple h3::after {
+    content: '▼';
+    font-size: 10px;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.episode-header {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.server-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.server-tab {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.server-tab.active {
+    border-color: #fff;
+    color: #fff;
+    font-weight: 500;
+}
+
+.episode-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.toggle-switch {
+    width: 36px;
+    height: 20px;
+    background: #333;
+    border-radius: 20px;
+    border: none;
+    position: relative;
     cursor: pointer;
     transition: background 0.2s;
 }
 
-.action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+.toggle-switch.active {
+    background: #f5c518;
+}
+
+.switch-handle {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s;
+}
+
+.toggle-switch.active .switch-handle {
+    left: 18px;
+}
+
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+}
+
+.episode-btn {
+    background: #1a1c25;
+    border: none;
+    color: #ccc;
+    padding: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.episode-btn:hover {
+    background: #2a2c38;
+}
+
+.episode-btn.active {
+    background: #f5c518;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Comments */
+.comments-block {
+    margin-top: 40px;
+}
+
+.comments-header .tabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid #2a2c38;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+}
+
+.tab-btn.active {
     color: #fff;
 }
 
-.movie-synopsis {
-    background: var(--bg-card);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
 }
 
-.movie-synopsis h3 {
-    font-size: 18px;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
+.login-prompt {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.highlight-link {
+    color: #f5c518;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.comment-input-area {
+    background: #151720;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.comment-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    resize: none;
+    min-height: 80px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.comment-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    border-top: 1px solid #2a2c38;
+    padding-top: 10px;
+}
+
+.spoiler-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+}
+
+.spoiler-toggle input {
+    display: none;
+}
+
+.spoiler-toggle .slider {
+    width: 32px;
+    height: 18px;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
     display: inline-block;
 }
 
-.movie-synopsis p {
-    color: #ccc;
-    line-height: 1.6;
+.spoiler-toggle input:checked+.slider {
+    background: #555;
 }
 
-.comments-section {
-    margin-top: 30px;
+.spoiler-toggle .slider::before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.2s;
 }
 
-.comment-box {
-    background: var(--bg-card);
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
+.spoiler-toggle input:checked+.slider::before {
+    transform: translateX(14px);
+}
+
+.send-btn {
+    background: transparent;
     color: #666;
+    /* Disabled look initially */
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-/* Sidebar */
-.sidebar h3 {
-    font-size: 20px;
+.send-btn .rotate-icon {
+    transform: rotate(90deg);
+    /* Play button used as send arrow needs rotation usually if it's pointing right */
+}
+
+.send-btn:hover {
+    color: #f5c518;
+}
+
+
+/* Sidebar Column */
+.sidebar-column {
+    /* Sticky sidebar */
+    position: sticky;
+    top: 20px;
+    height: 100%;
+    border-left: 1px solid #2a2c38;
+}
+
+.action-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating-btn-blue {
+    background: #5a4fcf;
+    /* Blue/Purple color from screenshot */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Cast Section */
+.cast-section {
+    margin-bottom: 30px;
+}
+
+.cast-section .section-title {
+    font-size: 18px;
     margin-bottom: 20px;
-    border-left: 4px solid var(--primary-color);
-    padding-left: 10px;
+    margin-left: 20px;
+    color: #fff;
 }
 
-.related-grid {
+.cast-list {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    text-align: center;
 }
+
+.cast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cast-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #333;
+}
+
+.cast-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cast-name {
+    font-size: 12px;
+    color: #ccc;
+}
+
 
 /* Responsive */
-@media (max-width: 900px) {
-    .watch-page {
-        flex-direction: column;
+@media (max-width: 992px) {
+    .content-grid {
+        grid-template-columns: 1fr;
     }
 
-    .related-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .sidebar-column {
+        position: static;
+        /* Remove sticky on mobile */
+        border-left: none;
+        border-top: 1px solid #2a2c38;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+
+    .action-stats {
+        justify-content: flex-start;
+        gap: 30px;
+        margin-left: 0;
+    }
+
+    .cast-section .section-title {
+        margin-left: 0;
+    }
+
+    .cast-list {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        gap: 15px;
+    }
+
+    .cast-item {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .watch-page-container {
+        padding-top: 0 !important;
+    }
+
+    .watch-header {
+        padding: 0 !important;
+        margin-top: 20px !important;
+    }
+
+    .movie-info-container {
+        display: none !important;
+    }
+
+    .player-wrapper-large {
+        margin: 0 !important;
+    }
+
+    .movie-poster-wrapper {
+        width: 160px;
+    }
+
+    .movie-meta-badges {
+        justify-content: center;
+    }
+
+    .movie-title-large {
+        font-size: 24px;
+    }
+
+    .more-info-link {
+        justify-content: center;
+    }
+
+    .episode-header {
+        justify-content: center;
+    }
+
+    .comments-header .tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .watch-body {
+        padding: 0 15px 30px;
+    }
+
+    .episode-grid {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 8px;
+    }
+
+    .episode-btn {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+
+    .big-play-btn .play-icon-bg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: #fff;
+}
+
+/* Player */
+.player-wrapper-large {
+    width: 100%;
+    max-width: 1500px;
+    /* Limit width */
+    margin: 0 auto 30px;
+    /* Center and add bottom margin */
+    aspect-ratio: 16/9;
+    /* Enforce video aspect ratio */
+    background: #000;
+    /* distinct background */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.video-player-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional, maybe flat? */
+/* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+} */
+
+.big-play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.big-play-btn:hover {
+    transform: scale(1.1);
+}
+
+.play-icon-bg {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+/* Body Grid */
+.watch-body {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px 50px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+}
+
+/* Main Column Components */
+/* Movie Info */
+.movie-info-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.movie-poster-wrapper {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.movie-poster-vertical {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.movie-info-content {
+    flex: 1;
+}
+
+.movie-title-large {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 5px;
+    color: #fff;
+}
+
+.movie-title-original {
+    font-size: 16px;
+    color: #f5c518;
+    /* Yellow/Orange */
+    margin: 0 0 15px;
+    font-weight: 500;
+}
+
+.movie-meta-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.meta-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.meta-badge.imdb {
+    background: #f5c518;
+    color: #000;
+    font-weight: 700;
+    border: none;
+}
+
+.movie-genre-list {
+    margin-bottom: 15px;
+}
+
+.genre-tag {
+    background: #2a2c38;
+    color: #ccc;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.movie-status {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.highlight-text {
+    color: #f5c518;
+    font-weight: 500;
+}
+
+.movie-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #aaa;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.more-info-link {
+    color: #f5c518;
+    font-size: 13px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Episode List */
+.episode-block {
+    border-top: 1px solid #2a2c38;
+    margin-bottom: 40px;
+    /* background: #0f101a; */
+    padding: 0;
+    border-radius: 12px;
+}
+
+.section-header-simple h3 {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.section-header-simple h3::after {
+    content: '▼';
+    font-size: 10px;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.episode-header {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.server-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.server-tab {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.server-tab.active {
+    border-color: #fff;
+    color: #fff;
+    font-weight: 500;
+}
+
+.episode-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.toggle-switch {
+    width: 36px;
+    height: 20px;
+    background: #333;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toggle-switch.active {
+    background: #f5c518;
+}
+
+.switch-handle {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s;
+}
+
+.toggle-switch.active .switch-handle {
+    left: 18px;
+}
+
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+}
+
+.episode-btn {
+    background: #1a1c25;
+    border: none;
+    color: #ccc;
+    padding: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.episode-btn:hover {
+    background: #2a2c38;
+}
+
+.episode-btn.active {
+    background: #f5c518;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Comments */
+.comments-block {
+    margin-top: 40px;
+}
+
+.comments-header .tabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid #2a2c38;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #fff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+}
+
+.login-prompt {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.highlight-link {
+    color: #f5c518;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.comment-input-area {
+    background: #151720;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.comment-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    resize: none;
+    min-height: 80px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.comment-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    border-top: 1px solid #2a2c38;
+    padding-top: 10px;
+}
+
+.spoiler-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+}
+
+.spoiler-toggle input {
+    display: none;
+}
+
+.spoiler-toggle .slider {
+    width: 32px;
+    height: 18px;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.spoiler-toggle input:checked+.slider {
+    background: #555;
+}
+
+.spoiler-toggle .slider::before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.2s;
+}
+
+.spoiler-toggle input:checked+.slider::before {
+    transform: translateX(14px);
+}
+
+.send-btn {
+    background: transparent;
+    color: #666;
+    /* Disabled look initially */
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.send-btn .rotate-icon {
+    transform: rotate(90deg);
+    /* Play button used as send arrow needs rotation usually if it's pointing right */
+}
+
+.send-btn:hover {
+    color: #f5c518;
+}
+
+
+/* Sidebar Column */
+.sidebar-column {
+    /* Sticky sidebar */
+    position: sticky;
+    top: 20px;
+    height: 100%;
+    border-left: 1px solid #2a2c38;
+}
+
+.action-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating-btn-blue {
+    background: #5a4fcf;
+    /* Blue/Purple color from screenshot */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Cast Section */
+.cast-section {
+    margin-bottom: 30px;
+}
+
+.cast-section .section-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    color: #fff;
+}
+
+.cast-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.cast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cast-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #333;
+}
+
+.cast-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cast-name {
+    font-size: 12px;
+    color: #ccc;
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-column {
+        position: static;
+        /* Remove sticky on mobile */
+        border-left: none;
+        border-top: 1px solid #2a2c38;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+
+    .action-stats {
+        justify-content: flex-start;
+        gap: 30px;
+        margin-left: 0;
+    }
+
+    .cast-section .section-title {
+        margin-left: 0;
+    }
+
+    .cast-list {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        gap: 15px;
+    }
+
+    .cast-item {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .watch-header {
+        padding: 80px 20px 20px;
+    }
+
+    .movie-info-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .movie-poster-wrapper {
+        width: 160px;
+    }
+
+    .movie-meta-badges {
+        justify-content: center;
+    }
+
+    .movie-title-large {
+        font-size: 24px;
+    }
+
+    .more-info-link {
+        justify-content: center;
+    }
+
+    .episode-header {
+        justify-content: center;
+    }
+
+    .comments-header .tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px;
+    }
+
+    .sidebar-column {
+        display: none;
+    }
+
+    .watch-body {
+        margin: 0 auto;
+    }
+
+    .back-btn {
+        font-size: 12px;
+    }
+
+    .watch-header {
+        margin: 0px;
+    }
+}
+
+@media (max-width: 480px) {
+    .episode-grid {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 8px;
+    }
+
+    .episode-btn {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+
+    .big-play-btn .play-icon-bg {
+        width: 50px;
+        height: 50px;
     }
 }

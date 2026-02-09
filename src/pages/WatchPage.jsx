@@ -1,77 +1,169 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Play, Star, Calendar, Clock, Share2, ThumbsUp } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Play, ChevronLeft, MessageCircle, Star, Calendar } from 'lucide-react';
 import MovieCard from '../components/movies/MovieCard';
+import MovieInfo from '../components/movies/MovieInfo';
+import CastSection from '../components/movies/CastSection';
+import EpisodeList from '../components/movies/EpisodeList';
+import { fetchFilmDetail } from '../services/api';
 import './WatchPage.css';
 
-// Mock Data for Demo
-const MOCK_RELATED = [
-    { id: 2, title: 'Dune: Part Two', year: '2024', quality: 'Cam', duration: '2h 46m', episode: 'Full', posterUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=300&auto=format&fit=crop' },
-    { id: 3, title: 'Kung Fu Panda 4', year: '2024', quality: 'FHD', duration: '1h 34m', episode: 'Full', posterUrl: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=300&auto=format&fit=crop' },
-    { id: 4, title: 'Oppenheimer', year: '2023', quality: 'Bluray', duration: '3h 00m', episode: 'Full', posterUrl: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300&auto=format&fit=crop' },
-    { id: 5, title: 'Avatar 2', year: '2022', quality: '3D', duration: '3h 12m', episode: 'Full', posterUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=300&auto=format&fit=crop' },
-];
-
 const WatchPage = () => {
-    const { id } = useParams();
-    const [server, setServer] = useState(1);
+    const { slug } = useParams(); // Use slug instead of id
+    const navigate = useNavigate();
+    const [movie, setMovie] = useState(null);
+    const [currentEpisode, setCurrentEpisode] = useState(null); // Slug for highlighting
+    const [currentEmbedUrl, setCurrentEmbedUrl] = useState(''); // Direct URL for iframe
+    const playerRef = useRef(null);
+
+    // Handle episode selection
+    const handleEpisodeSelect = (episode) => {
+        if (!episode) return;
+        setCurrentEpisode(episode.slug);
+        setCurrentEmbedUrl(episode.embed);
+
+        // Scroll to player
+        if (playerRef.current) {
+            playerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    useEffect(() => {
+        const loadMovie = async () => {
+            if (!slug) return;
+            const data = await fetchFilmDetail(slug);
+            if (data && data.movie) {
+                const apiMovie = data.movie;
+                setMovie({
+                    title: apiMovie.name,
+                    originalTitle: apiMovie.original_name,
+                    year: apiMovie.created ? apiMovie.created.substring(0, 4) : '2024',
+                    imdb: '0.0', // API doesn't seem to have imdb in the sample
+                    part: 'Phần 1', // Static or derived if available
+                    episodeCount: apiMovie.current_episode,
+                    description: apiMovie.description,
+                    posterUrl: apiMovie.poster_url,
+                    thumb_url: apiMovie.thumb_url,
+                    cast: apiMovie.casts,
+                    episodes: apiMovie.episodes,
+                    category: apiMovie.category
+                });
+
+                // Auto-select first episode
+                if (apiMovie.episodes && apiMovie.episodes.length > 0 && apiMovie.episodes[0].items.length > 0) {
+                    const firstEp = apiMovie.episodes[0].items[0];
+                    setCurrentEpisode(firstEp.slug);
+                    setCurrentEmbedUrl(firstEp.embed);
+                }
+            }
+        };
+        loadMovie();
+    }, [slug]);
+
+    if (!movie) return <div className="loading">Loading...</div>;
+
+    // Helper name for display
+    const currentEpisodeName = movie?.episodes?.flatMap(server => server.items).find(ep => ep.slug === currentEpisode)?.name;
 
     return (
-        <div className="watch-page container">
-            <div className="watch-content">
-                <div className="player-wrapper">
-                    <div className="player-container">
-                        {/* Mock Player */}
-                        <div className="video-placeholder">
-                            <Play size={64} fill="currentColor" />
-                            <p>Đang tải phim... Server {server}</p>
+        <div className="watch-page-container">
+            <div className="watch-body container">
+                <div className="watch-header">
+                    <button className="back-btn" onClick={() => navigate('/')}>
+                        <ChevronLeft size={20} />
+                        <span>{movie.title} - {currentEpisodeName ? `Tập ${currentEpisodeName}` : ''}</span>
+                    </button>
+                </div>
+
+                <div className="player-wrapper-large" ref={playerRef}>
+                    {currentEmbedUrl ? (
+                        <iframe
+                            title={`Xem phim ${movie.title}`}
+                            src={currentEmbedUrl}
+                            width="100%"
+                            height="100%"
+                            frameBorder="0"
+                            allowFullScreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        ></iframe>
+                    ) : (
+                        <div className="video-player-placeholder">
+                            <div className="play-icon-bg">
+                                <p>Đang tải hoặc không tìm thấy tập phim...</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="server-list">
-                        <span>Server:</span>
-                        <button className={`server-btn ${server === 1 ? 'active' : ''}`} onClick={() => setServer(1)}>VIP 1</button>
-                        <button className={`server-btn ${server === 2 ? 'active' : ''}`} onClick={() => setServer(2)}>VIP 2</button>
-                        <button className={`server-btn ${server === 3 ? 'active' : ''}`} onClick={() => setServer(3)}>Dự Phòng</button>
-                    </div>
+                    )}
                 </div>
+                <div className="content-grid">
+                    {/* Left Column: Info, Episodes, Comments */}
+                    <div className="main-column">
+                        <section className="info-block">
+                            <MovieInfo movie={movie} />
+                        </section>
 
-                <div className="movie-details">
-                    <h1 className="movie-title">Godzilla x Kong: The New Empire</h1>
-                    <div className="movie-meta">
-                        <span className="meta-item"><Calendar size={16} /> 2024</span>
-                        <span className="meta-item"><Clock size={16} /> 1h 55m</span>
-                        <span className="meta-item rating"><Star size={16} fill="currentColor" /> 8.5</span>
-                        <span className="quality-badge">4K HDR</span>
+                        <section className="episode-block">
+                            {/* <div className="section-header-simple">
+                                <h3>Phần 1</h3>
+                            </div> */}
+                            <EpisodeList
+                                episodes={movie.episodes}
+                                currentEpisode={currentEpisode}
+                                onEpisodeSelect={handleEpisodeSelect}
+                            />
+                        </section>
+
+                        <section className="comments-block">
+                            <div className="comments-header">
+                                <div className="tabs">
+                                    <button className="tab-btn active">Bình luận (5)</button>
+                                    <button className="tab-btn">Đánh giá</button>
+                                    <button className="tab-btn">Lịch chiếu</button>
+                                </div>
+                            </div>
+                            <div className="login-prompt">
+                                Vui lòng <span className="highlight-link">đăng nhập</span> để tham gia bình luận.
+                            </div>
+                            <div className="comment-input-area">
+                                <textarea
+                                    className="comment-textarea"
+                                    placeholder="Viết bình luận hoặc gõ /lichchieu để đóng góp lịch chiếu"
+                                >
+                                </textarea>
+                                <div className="comment-tools">
+                                    <label className="spoiler-toggle">
+                                        <input type="checkbox" />
+                                        <span className="slider round"></span>
+                                        <span className="label-text">Tiết lộ?</span>
+                                    </label>
+                                    <button className="send-btn">
+                                        Gửi <Play size={12} fill="currentColor" className="rotate-icon" />
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
                     </div>
 
-                    <div className="action-buttons">
-                        <button className="action-btn"><ThumbsUp size={18} /> Thích</button>
-                        <button className="action-btn"><Share2 size={18} /> Chia sẻ</button>
-                    </div>
+                    {/* Right Column: Actions, Cast, Related */}
+                    <div className="sidebar-column">
+                        <div className="action-stats">
+                            <div className="stat-item">
+                                <Star size={18} />
+                                <span>Đánh giá</span>
+                            </div>
+                            <div className="stat-item">
+                                <MessageCircle size={18} />
+                                <span>Bình luận</span>
+                            </div>
+                            <button className="rating-btn-blue">
+                                <Star size={14} fill="currentColor" />
+                                9.4 Đánh giá
+                            </button>
+                        </div>
 
-                    <div className="movie-synopsis">
-                        <h3>Nội Dung:</h3>
-                        <p>
-                            Hai chúa tể Godzilla và Kong buộc phải bỏ qua mâu thuẫn để hợp sức chống lại một mối đe dọa mới ẩn sâu trong lòng Trái Đất, đe dọa sự tồn vong của cả hai loài và nhân loại.
-                            Phim hứa hẹn mang đến những trận chiến mãn nhãn và kỹ xảo đỉnh cao.
-                        </p>
-                    </div>
-                </div>
+                        <CastSection cast={movie.cast} />
 
-                <div className="comments-section">
-                    <h3>Bình Luận</h3>
-                    <div className="comment-box">
-                        <p>Chức năng bình luận đang bảo trì...</p>
+                        {/* Related Movies could go here */}
                     </div>
-                </div>
-            </div>
-
-            <div className="sidebar">
-                <h3>Phim Liên Quan</h3>
-                <div className="related-grid">
-                    {MOCK_RELATED.map(movie => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
                 </div>
             </div>
         </div>

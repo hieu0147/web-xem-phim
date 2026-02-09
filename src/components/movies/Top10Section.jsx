@@ -103,7 +103,7 @@ const Top10Section = ({ movies, title }) => {
                 >
                     {top10.map((movie, index) => (
                         <div className="top-10-item" key={movie.id || movie.slug || index}>
-                            <Link to={`/watch/${movie.slug}`} className="top-10-link">
+                            <Link to={`/phim/${movie.slug}`} className="top-10-link">
                                 <div className="top-10-poster">
                                     <img
                                         // src={movie.poster_url || movie.thumb_url}

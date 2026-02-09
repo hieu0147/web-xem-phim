@@ -15,7 +15,7 @@ function App() {
                     {/* Padding top 0 because Hero is full screen, usually handle spacing in pages or components */}
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/watch/:id" element={<WatchPage />} />
+                        <Route path="/phim/:slug" element={<WatchPage />} />
                     </Routes>
                 </main>
                 <Footer />
