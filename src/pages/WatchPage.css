@@ -113,6 +113,8 @@
 }
 
 .movie-poster-vertical {
+    height: 100%;
+    object-fit: cover;
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -591,13 +593,17 @@
 }
 
 @media (max-width: 768px) {
+    .watch-body {
+        padding: 0 !important;
+    }
+
     .watch-page-container {
         padding-top: 0 !important;
     }
 
     .watch-header {
         padding: 0 !important;
-        margin-top: 20px !important;
+        margin: 10px 10px 0 !important;
     }
 
     .movie-info-container {
@@ -605,6 +611,7 @@
     }
 
     .player-wrapper-large {
+        /* width: 100% !important; */
         margin: 0 !important;
     }
 
@@ -625,13 +632,25 @@
     }
 
     .episode-header {
-        justify-content: center;
+        justify-content: space-between !important;
     }
 
     .comments-header .tabs {
         overflow-x: auto;
         white-space: nowrap;
         padding-bottom: 5px;
+    }
+
+    .episode-section {
+        padding: 0 12px !important;
+    }
+
+    .comments-block {
+        padding: 0 12px !important;
+    }
+
+    .back-btn {
+        font-size: 13px !important;
     }
 }
 

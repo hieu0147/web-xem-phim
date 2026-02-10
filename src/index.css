@@ -37,9 +37,9 @@ a {
     transition: color var(--transition-fast);
 }
 
-a:hover {
+/* a:hover {
     color: var(--primary-color);
-}
+} */
 
 ul {
     list-style: none;
