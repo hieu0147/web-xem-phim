@@ -6,7 +6,8 @@ const MovieInfo = ({ movie }) => {
         <div className="movie-info-container">
             <div className="movie-poster-wrapper">
                 <img
-                    src={movie.posterUrl || movie.thumb_url}
+                    // src={movie.posterUrl || movie.thumb_url}
+                    src={movie.thumb_url || movie.posterUrl}
                     alt={movie.title}
                     className="movie-poster-vertical"
                 />
