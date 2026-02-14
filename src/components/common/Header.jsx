@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,6 +20,14 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/tim-kiem?q=${encodeURIComponent(searchQuery.trim())}`);
+            setSearchQuery('');
+        }
+    };
 
     return (
         <header className={`fly ${isScrolled ? 'scrolled' : ''}`}>
@@ -36,11 +47,19 @@ const Header = () => {
 
                 {/* Search */}
                 <div id="search">
-                    <form className="search-elements" action="/tim-kiem">
+                    <form className="search-elements" onSubmit={handleSearch}>
                         <div className="search-icon">
                             <Search size={18} />
                         </div>
-                        <input id="main-search" className="search-input" placeholder="Tìm kiếm phim, diễn viên" autoComplete="off" name="q" />
+                        <input 
+                            id="main-search" 
+                            className="search-input" 
+                            placeholder="Tìm kiếm phim, diễn viên" 
+                            autoComplete="off" 
+                            name="q" 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
                     </form>
                 </div>
 

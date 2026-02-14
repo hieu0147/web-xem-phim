@@ -5,6 +5,7 @@ import Footer from './components/common/Footer';
 import BackToTop from './components/common/BackToTop';
 import HomePage from './pages/HomePage';
 import WatchPage from './pages/WatchPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/phim/:slug" element={<WatchPage />} />
+                        <Route path="/tim-kiem" element={<SearchPage />} />
                     </Routes>
                 </main>
                 <Footer />
