@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -65,10 +65,12 @@ const Header = () => {
 
                 <div id="main_menu" className={isMobileMenuOpen ? 'open' : ''}>
                     <nav>
-                        <a href="/">Phim Mới</a>
-                        <a href="#">Phim Bộ</a>
-                        <a href="#">Phim Lẻ</a>
+                        <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Phim Mới</Link>
+                        <Link to="/danh-sach/tv-shows" onClick={() => setIsMobileMenuOpen(false)}>TV Shows</Link>
+                        <Link to="/danh-sach/phim-bo" onClick={() => setIsMobileMenuOpen(false)}>Phim Bộ</Link>
+                        <Link to="/danh-sach/phim-le" onClick={() => setIsMobileMenuOpen(false)}>Phim Lẻ</Link>
                         <a href="#">Quốc Gia</a>
+                        <a href="#">Thể Loại</a>
                     </nav>
                 </div>
             </div>

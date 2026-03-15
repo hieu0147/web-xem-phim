@@ -104,7 +104,7 @@
 }
 
 #main_menu nav a:hover {
-    color: var(--primary-color);
+    color: yellow;
 }
 
 /* User Button */

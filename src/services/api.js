@@ -2,17 +2,27 @@ const API_BASE = 'https://phim.nguonc.com/api/films';
 const API_FILM = 'https://phim.nguonc.com/api/film';
 
 /* ----- Tìm kiếm phim ----- */
+const defaultPaginate = {
+    current_page: 1,
+    total_page: 1,
+    total_items: 0,
+    items_per_page: 10,
+};
+
 export const searchFilms = async (keyword, page = 1) => {
     try {
         const response = await fetch(`${API_BASE}/search?keyword=${encodeURIComponent(keyword)}&page=${page}`);
         const data = await response.json();
         if (data.status === 'success') {
-            return data.items || [];
+            return {
+                items: data.items || [],
+                paginate: data.paginate || { ...defaultPaginate },
+            };
         }
-        return [];
+        return { items: [], paginate: { ...defaultPaginate } };
     } catch (error) {
         console.error('Error searching films:', error);
-        return [];
+        return { items: [], paginate: { ...defaultPaginate } };
     }
 };
 
@@ -116,12 +126,20 @@ export const fetchMoviesByCategory = async (categorySlug, page = 1) => {
         const response = await fetch(`${API_BASE}/danh-sach/${categorySlug}?page=${page}`);
         const data = await response.json();
         if (data.status === 'success') {
-            return data.items || [];
+            return {
+                items: data.items || [],
+                paginate: data.paginate || {
+                    current_page: 1,
+                    total_page: 1,
+                    total_items: 0,
+                    items_per_page: 10,
+                },
+            };
         }
-        return [];
+        return { items: [], paginate: { current_page: 1, total_page: 1, total_items: 0, items_per_page: 10 } };
     } catch (error) {
         console.error(`Error fetching category ${categorySlug}:`, error);
-        return [];
+        return { items: [], paginate: { current_page: 1, total_page: 1, total_items: 0, items_per_page: 10 } };
     }
 };
 

@@ -28,9 +28,9 @@ const HomePage = () => {
             setKoreanMovies(kr);
             setChineseMovies(cn);
             setVietnameseMovies(us);
-            setPhimBo(pb);
-            setPhimLe(pl);
-            setTvShows(ts);
+            setPhimBo(pb.items || []);
+            setPhimLe(pl.items || []);
+            setTvShows(ts.items || []);
         };
         loadData();
     }, []);

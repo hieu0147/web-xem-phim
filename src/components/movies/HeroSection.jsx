@@ -11,8 +11,9 @@ const HeroSection = () => {
     useEffect(() => {
         const loadMovies = async () => {
             const data = await fetchPhimDangChieu();
-            if (data && data.length > 0) {
-                setMovies(data.slice(0, 5)); // Take top 5 for rotator
+            const items = data?.items || [];
+            if (items.length > 0) {
+                setMovies(items.slice(0, 5)); // Take top 5 for rotator
             }
         };
         loadMovies();
@@ -39,8 +40,10 @@ const HeroSection = () => {
 
             <div className="hero-content container-fluid">
                 <div className="hero-left">
-                    <h1 className="hero-title">{currentMovie.name}</h1>
-                    <p className="hero-subtitle">{currentMovie.original_name}</p>
+                    <Link to={`/phim/${currentMovie.slug}`} className="hero-title-link">
+                        <h1 className="hero-title">{currentMovie.name}</h1>
+                        <p className="hero-subtitle">{currentMovie.original_name}</p>
+                    </Link>
 
                     <div className="hero-meta">
                         <span className="meta-tag imdb" >{currentMovie.quality}</span>

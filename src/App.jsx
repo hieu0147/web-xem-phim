@@ -6,6 +6,7 @@ import BackToTop from './components/common/BackToTop';
 import HomePage from './pages/HomePage';
 import WatchPage from './pages/WatchPage';
 import SearchPage from './pages/SearchPage';
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/phim/:slug" element={<WatchPage />} />
                         <Route path="/tim-kiem" element={<SearchPage />} />
+                        <Route path="/danh-sach/:categorySlug" element={<CategoryPage />} />
                     </Routes>
                 </main>
                 <Footer />

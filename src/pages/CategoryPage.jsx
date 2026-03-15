@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Film, ChevronLeft, ChevronRight } from 'lucide-react';
 import MovieCard from '../components/movies/MovieCard';
-import { searchFilms } from '../services/api';
-import './SearchPage.css';
+import { fetchMoviesByCategory, CATEGORY_SLUGS } from '../services/api';
+import './CategoryPage.css';
 
 const defaultPaginate = {
     current_page: 1,
@@ -12,38 +12,34 @@ const defaultPaginate = {
     items_per_page: 10,
 };
 
-const SearchPage = () => {
-    const [searchParams] = useSearchParams();
-    const [query, setQuery] = useState(searchParams.get('q') || '');
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
+const CategoryPage = () => {
+    const { categorySlug } = useParams();
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [paginate, setPaginate] = useState(defaultPaginate);
     const [pageInput, setPageInput] = useState('1');
 
+    const title = CATEGORY_SLUGS[categorySlug] || categorySlug || 'Danh sách phim';
     const { current_page, total_page } = paginate;
 
     useEffect(() => {
-        const searchQuery = searchParams.get('q');
-        if (searchQuery) {
-            setQuery(searchQuery);
-            setPaginate(defaultPaginate);
-            setPageInput('1');
-            performSearch(searchQuery, 1);
-        }
-    }, [searchParams]);
+        if (!categorySlug) return;
+        setMovies([]);
+        setPaginate(defaultPaginate);
+        setPageInput('1');
+        loadPage(categorySlug, 1);
+    }, [categorySlug]);
 
-    const performSearch = async (searchQuery, page = 1) => {
-        if (!searchQuery.trim()) return;
-
+    const loadPage = async (slug, page = 1) => {
         setLoading(true);
         try {
-            const result = await searchFilms(searchQuery, page);
-            setResults(result.items);
+            const result = await fetchMoviesByCategory(slug, page);
+            setMovies(result.items);
             setPaginate(result.paginate);
             setPageInput(String(result.paginate.current_page));
         } catch (error) {
-            console.error('Search error:', error);
-            setResults([]);
+            console.error('Category load error:', error);
+            setMovies([]);
         } finally {
             setLoading(false);
         }
@@ -52,7 +48,7 @@ const SearchPage = () => {
     const handlePageChange = (page) => {
         const p = Number(page);
         if (p < 1 || p > total_page) return;
-        performSearch(query, p);
+        loadPage(categorySlug, p);
     };
 
     const handlePageInputSubmit = (e) => {
@@ -63,36 +59,31 @@ const SearchPage = () => {
     };
 
     return (
-        <div className="search-page">
-            <div className="search-content container">
-                {query && (
-                    <div className="search-info">
-                        <h2 className="search-title">
-                            {loading ? 'Đang tìm kiếm...' : `Kết quả cho "${query}"`}
-                        </h2>
-                        {!loading && (results.length > 0 || paginate.total_items > 0) && (
-                            <p className="search-count">Tìm thấy {paginate.total_items > 0 ? paginate.total_items : results.length} kết quả</p>
-                        )}
-                    </div>
-                )}
+        <div className="category-page">
+            <div className="category-content container">
+                <div className="category-info">
+                    <h2 className="category-title">{title}</h2>
+                    {!loading && paginate.total_items > 0 && (
+                        <p className="category-count">Có {paginate.total_items} phim</p>
+                    )}
+                </div>
 
                 {loading && current_page === 1 ? (
-                    <div className="search-loading">
+                    <div className="category-loading">
                         <div className="loading-spinner"></div>
-                        <p>Đang tìm kiếm phim...</p>
+                        <p>Đang tải danh sách phim...</p>
                     </div>
                 ) : (
                     <>
-                        {results.length > 0 ? (
+                        {movies.length > 0 ? (
                             <>
-                                <div className="search-results-grid">
-                                    {results.map((movie) => (
-                                        <div key={movie.slug} className="search-result-item">
+                                <div className="category-results-grid">
+                                    {movies.map((movie) => (
+                                        <div key={movie.slug} className="category-result-item">
                                             <MovieCard movie={movie} />
                                         </div>
                                     ))}
                                 </div>
-
                                 {total_page >= 1 && (
                                     <nav className="pagination-capsule" aria-label="Phân trang">
                                         <button
@@ -132,11 +123,11 @@ const SearchPage = () => {
                                     </nav>
                                 )}
                             </>
-                        ) : query && !loading ? (
+                        ) : !loading ? (
                             <div className="no-results">
                                 <Film size={48} className="no-results-icon" />
-                                <h3>Không tìm thấy phim nào</h3>
-                                <p>Thử tìm kiếm với từ khóa khác nhé</p>
+                                <h3>Chưa có phim nào</h3>
+                                <p>Danh mục này đang cập nhật</p>
                             </div>
                         ) : null}
                     </>
@@ -146,4 +137,4 @@ const SearchPage = () => {
     );
 };
 
-export default SearchPage;
+export default CategoryPage;
