@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import WatchPage from './pages/WatchPage';
 import SearchPage from './pages/SearchPage';
 import CategoryPage from './pages/CategoryPage';
+import CountryPage from './pages/CountryPage';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/phim/:slug" element={<WatchPage />} />
                         <Route path="/tim-kiem" element={<SearchPage />} />
                         <Route path="/danh-sach/:categorySlug" element={<CategoryPage />} />
+                        <Route path="/quoc-gia/:countrySlug" element={<CountryPage />} />
                     </Routes>
                 </main>
                 <Footer />

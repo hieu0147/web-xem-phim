@@ -42,7 +42,7 @@
 }
 
 .search-icon {
-    color: var(--text-secondary);
+    /* color: var(--text-secondary); */
     margin-left: 16px;
 }
 
@@ -78,10 +78,6 @@
 
 .search-content {
     padding: 40px 2%;
-}
-
-.search-info {
-    margin-bottom: 32px;
 }
 
 .search-title {
@@ -257,7 +253,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     .search-page {
-        padding-top: 60px;
+        padding-top: 0px !important;
     }
     
     .search-content {

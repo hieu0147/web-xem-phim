@@ -72,12 +72,20 @@ export const fetchMoviesByCountry = async (countrySlug, page = 1) => {
         const response = await fetch(`${API_BASE}/quoc-gia/${countrySlug}?page=${page}`);
         const data = await response.json();
         if (data.status === 'success') {
-            return data.items || [];
+            return {
+                items: data.items || [],
+                paginate: data.paginate || {
+                    current_page: 1,
+                    total_page: 1,
+                    total_items: 0,
+                    items_per_page: 10,
+                },
+            };
         }
-        return [];
+        return { items: [], paginate: { current_page: 1, total_page: 1, total_items: 0, items_per_page: 10 } };
     } catch (error) {
         console.error(`Error fetching movies for ${countrySlug}:`, error);
-        return [];
+        return { items: [], paginate: { current_page: 1, total_page: 1, total_items: 0, items_per_page: 10 } };
     }
 };
 

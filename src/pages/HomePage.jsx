@@ -3,6 +3,7 @@ import HeroSection from '../components/movies/HeroSection';
 import CategoryRow from '../components/movies/CategoryRow';
 import Top10Section from '../components/movies/Top10Section';
 import MovieSlider from '../components/common/MovieSlider';
+import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { fetchKoreanMovies, fetchChineseMovies, fetchVietnameseMovies, fetchPhimBo, fetchPhimLe, fetchTvShows } from '../services/api';
 import './HomePage.css';
@@ -25,9 +26,9 @@ const HomePage = () => {
                 fetchPhimLe(1),
                 fetchTvShows(1),
             ]);
-            setKoreanMovies(kr);
-            setChineseMovies(cn);
-            setVietnameseMovies(us);
+            setKoreanMovies(kr.items || []);
+            setChineseMovies(cn.items || []);
+            setVietnameseMovies(us.items || []);
             setPhimBo(pb.items || []);
             setPhimLe(pl.items || []);
             setTvShows(ts.items || []);
@@ -48,7 +49,7 @@ const HomePage = () => {
                             <div className="section-header-side">
                                 <div className="header-titles">
                                     <h2 className="text-highlight">Phim Hàn Quốc mới</h2>
-                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                    <Link to="/quoc-gia/han-quoc" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></Link>
                                 </div>
                             </div>
                             <div className="slider-container-flex">
@@ -63,7 +64,7 @@ const HomePage = () => {
                             <div className="section-header-side">
                                 <div className="header-titles">
                                     <h2 className="text-highlight-yellow">Phim Trung Quốc mới</h2>
-                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                    <Link to="/quoc-gia/trung-quoc" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></Link>
                                 </div>
                             </div>
                             <div className="slider-container-flex">
@@ -78,7 +79,7 @@ const HomePage = () => {
                             <div className="section-header-side">
                                 <div className="header-titles">
                                     <h2 className="text-highlight-pink">Phim Việt Nam Mới</h2>
-                                    <a href="#" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></a>
+                                    <Link to="/quoc-gia/viet-nam" className="view-more-link">Xem toàn bộ <ChevronRight size={14} /></Link>
                                 </div>
                             </div>
                             <div className="slider-container-flex">
